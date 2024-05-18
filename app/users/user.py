@@ -47,3 +47,29 @@ def signup():
     else:
         print(form.errors)  # Print form errors if validation fails
     return render_template('login.html', form=form)
+
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        email= form.email.data
+        password = form.password.data
+
+        user = User.query.filter_by(email=email).first()
+        if user:
+
+            valid_password = bcrypt.check_password_hash(user.password, password)
+            if valid_password:
+            
+
+        #if user and valid_password ==True:
+                session['user_id'] = user.id  # Store user ID in session
+                flash('Logged in successfully!', 'success')
+                return redirect(url_for('index'))
+            else:
+                flash('Invalid email or password. Please try again.', 'danger')
+        else:
+            flash('Invalid email or password. Please try again.', 'danger')
+    return render_template('login.html', form=form)
+  
