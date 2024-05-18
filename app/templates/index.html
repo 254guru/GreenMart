@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenMart</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css' )}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/responsive.css' )}}">
+    <script src="https://kit.fontawesome.com/a90c9d1ec4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- preloader -->
+    <div id="preloader">
+        <img src="../static/images/loading.gif" alt="loading...">
+    </div>
+    <!-- preloader end -->
+
+    <!-- header start -->
+    <header class="header">
+        <a href="{{ url_for('index') }}" class="logo">GreenMart</a>
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('products.shop_products') }}">Products</a>
+            <a href="{{ url_for('categories') }}">Categories</a>
+            <a href="{{ url_for('blog') }}">Blogs</a>
+        </nav>
+
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <div class="fas fa-user" id="login-btn"></div>
+        </div>
+
+        <form action="" class="search-form">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="{{ url_for('static', filename='images/able.jpg') }}" alt="apple">
+                <div class="content">
+                    <h3>Apple</h3>
+                    <span class="price">KSH 100</span>
+                    <span class="quantity">qty: 5</span>
+                </div>
+
+            </div>
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="{{ url_for('static', filename='images/banana.jpg' )}}" alt="banana">
+                <div class="content">
+                    <h3>Banana</h3>
+                    <span class="price">KSH 100</span>
+                    <span class="quantity">qty: 20</span>
+                </div>
+
+            </div>
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="{{ url_for('static', filename='images/tomto.jpg') }}" alt="tomato">
+                <div class="content">
+                    <h3>Tomato</h3>
+                    <span class="price">KSH 100</span>
+                    <span class="quantity">qty: 10</span>
+                </div>
+
+            </div>
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="{{ url_for('static', filename='images/botato.jpg') }}" alt="potato">
+                <div class="content">
+                    <h3>Potato</h3>
+                    <span class="price">KSH 100</span>
+                    <span class="quantity">qty: 1kg</span>
+                </div>
+
+            </div>
+            <div class="total">total : KSH. 400/-</div>
+            <a href="#" class="btn">checkout</a>
+        </div>
+
+        <div class="login-form">
+            <a href="{{ url_for('user.login') }}" class="btn">Sign In</a>
+            <div class="profile-others">
+                <a href="#"><div class="fas fa-user"></div>My account</a>
+                <a href="#">My orders</a>
+                <a href="#">saved items</a>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+
+    <!-- hero section starts -->
+
+    <section class="home" id="home">
+        <div class="content">
+            <h3>fresh <span>organic</span> products</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dolor excepturi, temporibus, voluptates
+                vitae illo eum veniam doloremque nesciunt itaque quasi incidunt explicabo? Vitae, obcaecati sapiente
+                animi accusamus labore nostrum.</p>
+            <a href="{{ url_for('products.shop_products') }}" class="btn">shop now </a>
+        </div>
+    </section>
+    <!-- hero section ends -->
+
+    <!-- category section start -->
+    <section class="category" id="category">
+        <div class="category-heading">
+            <h2>Category</h2>
+            <span>All</span>
+        </div>
+        <div class="category-container">
+            <a href="#" class="category-box">
+                <img src="{{ url_for('static', filename='images/featur-2.jpg') }}" alt="fruits">
+                <span>Fruits</span>
+            </a>
+
+            <a href="#" class="category-box">
+                <img src="{{ url_for('static', filename='images/featur-1.jpg') }}" alt="fruits">
+                <span>cereals</span>
+            </a>
+
+            <a href="#" class="category-box">
+                <img src="{{ url_for('static', filename='images/featur-3.jpg') }}" alt="fruits">
+                <span>vegetables</span>
+            </a>
+
+            <a href="#" class="category-box">
+                <img src="{{ url_for('static', filename='images/featur-1.jpg') }}" alt="fruits">
+                <span>spices and herbs</span>
+            </a>
+
+            <a href="#" class="category-box">
+                <img src="{{ url_for('static', filename='images/featur-2.jpg') }}" alt="fruits">
+                <span>Fruits</span>
+            </a>
+        </div>
+    </section>
+    <!-- category section end -->
+
+    <!-- features section start -->
+    <section class="features">
+        <div class="features-heading">
+            <h2>Why GreenMart</h2>
+        </div>
+        <div class="box-container">
+            <div class="box">
+                <i class="fa-solid fa-car-side"></i>
+                <h5>Free Shipping</h5>
+                <p>Free on order over KSH 3000</p>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-user-shield"></i>
+                <h5>Secure Payment</h5>
+                <p>100% security payment</p>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-leaf"></i>
+                <h5>Fresh & Organic</h5>
+                <p>harvested & sorted directly from local farms</p>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                <h5>30 Day Return</h5>
+                <p>30 day money back guarantee</p>
+            </div>
+            <div class="box">
+                <i class="fa-solid fa-phone"></i>
+                <h5>24/7 Support</h5>
+                <p>Support every time fast</p>
+            </div>
+
+        </div>
+    </section>
+    <!-- features section end -->
+
+    <!-- products section start -->
+    <section class="products" id="products">
+        <div class="product-heading">
+            <h2>Available Products</h2>
+        </div>
+
+        <div class="product-container">
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+            <div class="product-box">
+                <img src="{{ url_for('static', filename='images/best-product-2.jpg')}}" alt="grapes">
+                <strong>Grapes</strong>
+                <span class="quantity">1 KG</span>
+                <span class="price">KSH 120</span>
+                <a href="#" class="cart-btn">
+                    <i class="fas fa-shopping-bag">Add To Cart</i>
+                </a>
+                <a href="#" class="like-btn">
+                    <i class="far fa-heart"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- product section end -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
+
