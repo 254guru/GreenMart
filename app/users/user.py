@@ -1,10 +1,6 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, flash, session
 from app import app, db
-<<<<<<< HEAD
-from app.models import  User 
-=======
 from app.models import  User
->>>>>>> Backend
 from app.users import bp, bcrypt
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
