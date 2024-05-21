@@ -20,6 +20,8 @@ migrate = Migrate(app, db)
 
 from app import route
 from app.users import bp as user_bp
+from app.products import bp as product_bp
 
 
 app.register_blueprint(user_bp)
+app.register_blueprint(product_bp)
