@@ -15,6 +15,12 @@ class SignupForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
 
+class LoginForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
+
+
 @bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     print('Signup route')
