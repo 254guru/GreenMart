@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
     <!-- preloader -->
     <div id="preloader">
         <img src="../static/images/loading.gif" alt="loading...">
@@ -34,6 +35,7 @@
             <div class="fas fa-search" id="search-btn"></div>
             <div class="fas fa-shopping-cart" id="cart-btn"></div>
             <div class="fas fa-user" id="login-btn"></div>
+            {{session['user_id']}}
         </div>
 
         <form action="" class="search-form">
@@ -42,48 +44,29 @@
         </form>
 
         <div class="shopping-cart">
+        {% if cart_items %}
+            {% for item in cart_items %}
             <div class="box">
                 <i class="fas fa-trash"></i>
-                <img src="{{ url_for('static', filename='images/able.jpg') }}" alt="apple">
+                <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{item.product_name}}">
                 <div class="content">
-                    <h3>Apple</h3>
-                    <span class="price">KSH 100</span>
-                    <span class="quantity">qty: 5</span>
-                </div>
+                    <h3>{{ item.product_name }}</h3>
+                    <span class="price">KSH {{ item.price }}</span>
+                    <span class="quantity">qty: {{ item.quantity }}</span>
 
-            </div>
-            <div class="box">
-                <i class="fas fa-trash"></i>
-                <img src="{{ url_for('static', filename='images/banana.jpg' )}}" alt="banana">
-                <div class="content">
-                    <h3>Banana</h3>
-                    <span class="price">KSH 100</span>
-                    <span class="quantity">qty: 20</span>
                 </div>
-
             </div>
-            <div class="box">
-                <i class="fas fa-trash"></i>
-                <img src="{{ url_for('static', filename='images/tomto.jpg') }}" alt="tomato">
-                <div class="content">
-                    <h3>Tomato</h3>
-                    <span class="price">KSH 100</span>
-                    <span class="quantity">qty: 10</span>
-                </div>
+            {% endfor %}
+        {% endif %}            
+            
 
-            </div>
-            <div class="box">
-                <i class="fas fa-trash"></i>
-                <img src="{{ url_for('static', filename='images/botato.jpg') }}" alt="potato">
-                <div class="content">
-                    <h3>Potato</h3>
-                    <span class="price">KSH 100</span>
-                    <span class="quantity">qty: 1kg</span>
-                </div>
-
-            </div>
-            <div class="total">total : KSH. 400/-</div>
-            <a href="#" class="btn">checkout</a>
+            <div class="total">total : KSH. {{total_price}}/-</div>
+            <form action="{{url_for('orders.create_order')}}" method="POST">
+              <input type="text" name="user_id" hidden > 
+                <input type="text" name="total_price" value="{{total_price}}" hidden >
+                <input type="submit" value="checkout" class="btn"> 
+            </form >
+           <!-- <a href="" class="btn">checkout</a> -->
         </div>
 
         <div class="login-form">
@@ -96,6 +79,18 @@
         </div>
     </header>
     <!-- header end -->
+
+    {% with msg = get_flashed_messages(with_categories=True) %}
+    {% if msg %}
+    {% for category, message in msg %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
 
     <!-- hero section starts -->
 
@@ -291,4 +286,3 @@
 </body>
 
 </html>
-

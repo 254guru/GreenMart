@@ -1,10 +1,14 @@
 from flask import render_template, request, redirect, url_for, send_from_directory, session
 from app import app
+from app.orders import order
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    cart_items = order.fetch_cart()
+    total_price = order.calculate_total_price()
+    return render_template('index.html', cart_items=cart_items, total_price=total_price)
+
 
 @app.route('/categories')
 def categories():
