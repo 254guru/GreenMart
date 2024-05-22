@@ -15,7 +15,7 @@ def shop_products():
 def create_new():
     try:
         # Create instances of Product
-        product = Product(name='aple', description='greens', price=10.0, image_url='images/aple.jpg', category_id=7)
+        product = Product(name='redberry', description='fruit', price=30.0, image_url='images/redberry.jpg', category_id=7)
         #product = Product(name='banana', description='yellow fruit', price=1.0, image_url='images/banana.jpg', category_id=3)
         
 
