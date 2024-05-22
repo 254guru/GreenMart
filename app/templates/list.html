@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List product</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/test.css')}}">
+</head>
+<body>
+    <h1>available products</h1>
+    <div class="product_list">
+    {% for product in products%}
+   
+        <div class="desplay">
+            <p>{{product.name}}</p>  <p>price={{product.price}}</p> description {{product.description}}  
+        </div> <img src="{{url_for('static', filename=product.image_url)}}">
+    {% endfor %}
+    </div>
+    
+</body>
+</html>
