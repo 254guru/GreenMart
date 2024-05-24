@@ -38,6 +38,6 @@ def serve_js():
 def serve_login_js():
     return send_from_directory('static', 'js/login_form.js')
 
-@app.route('/static/img/<filename>')
+@app.route('/static/images/<filename>')
 def get_image(filename):
-    return send_from_directory('static/img', filename)
+    return send_from_directory('static/images', filename)

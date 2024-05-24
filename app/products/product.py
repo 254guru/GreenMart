@@ -8,7 +8,7 @@ def shop_products():
     products = Product.query.all()
 
 
-    return render_template('list.html', products=products)
+    return render_template('shop.html', products=products)
 
 
 @bp.route('/create_new', methods=['GET'])
