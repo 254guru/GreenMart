@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenMart Blogs</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css' )}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/responsive.css' )}}">
+    <script src="https://kit.fontawesome.com/a90c9d1ec4.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="blogs" id="blogs">
+        <h1 class="heading">Our <span>Blogs</span></h1>
+        <div class="box-container">
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/hero-img-1.png' )}}" alt="">
+                <div class="content">
+                    <div class="icons">
+                        <a href="#">
+                            <i class="fas fa-user"></i> by user
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-calendar"></i> 31st June, 2024
+                        </a>
+                    </div>
+                    <h3>Fresh and organic vegetables and fruits</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam excepturi adipisci, quam quis
+                        dicta amet. Officiis maxime necessitatibus ullam, omnis eaque quo harum doloribus, iure
+                        architecto soluta ipsa dicta blanditiis.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/hero-img-2.jpg' )}}" alt="">
+                <div class="content">
+                    <div class="icons">
+                        <a href="#">
+                            <i class="fas fa-user"></i> by user
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-calendar"></i> 31st June, 2024
+                        </a>
+                    </div>
+                    <h3>Fresh and organic vegetables and fruits</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam excepturi adipisci, quam quis
+                        dicta amet. Officiis maxime necessitatibus ullam, omnis eaque quo harum doloribus, iure
+                        architecto soluta ipsa dicta blanditiis.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+            <div class="box">
+                <img src="{{ url_for('static', filename='images/banner-fruits.jpg' )}}" alt="">
+                <div class="content">
+                    <div class="icons">
+                        <a href="#">
+                            <i class="fas fa-user"></i> by user
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-calendar"></i> 31st June, 2024
+                        </a>
+                    </div>
+                    <h3>Fresh and organic vegetables and fruits</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam excepturi adipisci, quam quis
+                        dicta amet. Officiis maxime necessitatibus ullam, omnis eaque quo harum doloribus, iure
+                        architecto soluta ipsa dicta blanditiis.</p>
+                    <a href="#" class="btn">Read More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
