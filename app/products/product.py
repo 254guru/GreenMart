@@ -6,8 +6,6 @@ from app.products import bp
 @bp.route('/shop')
 def shop_products():
     products = Product.query.all()
-
-
     return render_template('shop.html', products=products)
 
 
@@ -15,7 +13,7 @@ def shop_products():
 def create_new():
     try:
         # Create instances of Product
-        product = Product(name='redberry', description='fruit', price=30.0, image_url='images/redberry.jpg', category_id=7)
+        product = Product(name='tomato', description='fruit', price=10.0, image_url='images/tomto.jpg', category_id=8)
         #product = Product(name='banana', description='yellow fruit', price=1.0, image_url='images/banana.jpg', category_id=3)
         
 
