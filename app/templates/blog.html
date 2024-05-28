@@ -12,6 +12,9 @@
 </head>
 
 <body>
+
+    
+
     <section class="blogs" id="blogs">
         <h1 class="heading">Our <span>Blogs</span></h1>
         <div class="box-container">
@@ -71,6 +74,14 @@
             </div>
         </div>
     </section>
+
+    <!-- Navigation Side Panel -->
+  <nav class="side-panel">
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('categories') }}">Categories</a>
+    <a href="{{ url_for('blog') }}">Blogs</a>
+  </nav>
+
 </body>
 
 </html>
