@@ -34,6 +34,7 @@ from app.products import bp as products_bp
 from app.users import bp as user_bp
 from app.orders import bp as order_bp
 
+
 app.register_blueprint(products_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(order_bp)

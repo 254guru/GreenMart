@@ -69,3 +69,10 @@ def update_product():
     except Exception as e:
         db.session.rollback()
         return jsonify({"error": str(e)}), 500
+
+
+
+@app.route('/category/<int:category_id>')
+def category_detail(category_id):
+    category = Category.query.get_or_404(category_id)
+    return render_template('categories.html', category=category)

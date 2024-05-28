@@ -10,6 +10,7 @@ class User(db.Model):
     password = db.Column(db.String(60), nullable=False)
     role = db.Column(db.String(20), default='customer')
     signup_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+   # is_admin = db.Column(db.Boolean, default=False)
 
 
 
