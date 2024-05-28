@@ -281,6 +281,51 @@
         </div>
     </section>
     <!-- product section end -->
+
+    <!-- footer section start -->
+    <section class="footer">
+        <div class="box-container">
+            <div class="box">
+                <h3>GreenMart</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="" class="links"><i class="fas fa-phone"></i> +123 4567890</a>
+                <a href="" class="links"><i class="fas fa-phone"></i> +123 5678904</a>
+                <a href="" class="links"><i class="fas fa-envelope"></i> support@greenmart.com</a>
+                <a href="" class="links"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
+                00000</a>
+                
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="{{ url_for('index') }}" class="links"><i class="fas fa-arrow-right"></i> home</a>
+                <a href="{{ url_for('products.shop_products') }}" class="links"><i class="fas fa-arrow-right"></i> products</a>
+                <a href="{{ url_for('categories') }}" class="links"><i class="fas fa-arrow-right"></i> categories</a>
+                <a href="{{ url_for('blog') }}" class="links"><i class="fas fa-arrow-right"></i> Blogs</a>
+            </div>
+
+            <div class="box">
+                <h3>newsletter</h3>
+                <p>subscribe for latest updates</p>
+                <input type="email" placeholder="your email" class="email">
+                <input type="submit" value="subscribe" class="btn">
+                <img src="{{ url_for('static', filename='images/payment.png')}}" alt="" class="payment-img">
+            </div>
+        </div>
+
+        <div class="credit"> copyright &copy; 2024 <span>GreenMart</span> | all rights reserved</div>
+    </section>
+    <!-- footer section end -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
