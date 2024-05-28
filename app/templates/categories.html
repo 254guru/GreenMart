@@ -1,0 +1,27 @@
+{% extends "shop.html" %}
+
+{% block title %}
+Categories
+{% endblock %}
+
+{% block content %}
+<section class="products" id="categories">
+  <div class="product-heading">
+    <h2>Categories</h2>
+  </div>
+  <div class="product-container">
+    <ul>
+      {% for category in categories %}
+      <li>
+        <a href="{{ url_for('category_detail', category_id=category.id) }}">
+          <div class="product-box">
+            <strong>{{ category.name }}</strong>
+            <p>{{ category.description }}</p>
+          </div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}
