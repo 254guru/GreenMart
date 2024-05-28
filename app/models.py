@@ -30,7 +30,6 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     total_price = db.Column(db.Float, nullable=False)
     order_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
-    #status = db.Column(db.String(20), default='pending')
     payment_status = db.Column(db.String(20), default='unpaid')
     order_items = db.relationship('OrderItem', backref='order', lazy=True)
 
@@ -41,7 +40,6 @@ class OrderItem(db.Model):
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
-    #subtotal = db.Column(db.Float, nullable=False)
     product = db.relationship('Product', backref='order_items', lazy=True)
 
 
