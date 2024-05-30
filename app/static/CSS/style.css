@@ -580,7 +580,10 @@ a{
 /* =========== product catalogue end ========== */
 
 /* =========== blog section start ============ */
-
+.blogs{
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+}
 .blogs .heading{
     text-align: center;
     padding: 2rem 0;
