@@ -52,3 +52,33 @@ window.onscroll = () =>{
     shoppingCart.classList.remove('active');
     searchForm.classList.remove('active');
 }
+
+// remove item from cart
+document.addEventListener('DOMContentLoaded', function () {
+    // Add event listener to trash icons
+    document.querySelectorAll('.remove-item').forEach(function (trashIcon) {
+        trashIcon.addEventListener('click', function (event) {
+            event.preventDefault();
+            var productId = this.getAttribute('data-product-id');
+            removeFromCart(productId);
+        });
+    });
+
+    // Function to remove item from cart via AJAX
+    function removeFromCart(productId) {
+        fetch("{{ url_for('orders.remove_from_cart', product_id='') }}" + productId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(response => {
+            if (response.ok) {
+                location.reload(); // Refresh the page after successful removal
+            } else {
+                console.error('Error removing item from cart:', response.statusText);
+            }
+        }).catch(error => {
+            console.error('Error removing item from cart:', error);
+        });
+    }
+});

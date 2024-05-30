@@ -48,7 +48,7 @@
             {% for item in cart_items %}
             <div class="box">
 
-                <a href="{{url_for('orders.remove_from_cart', product_id=item.product_id)}}"><i class="fas fa-trash"></i></a>
+                <a href="#" class="remove-item" data-product-id="{{ item.product_id }}"><i class="fas fa-trash"></i></a>
                 <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{item.product_name}}">
                 <div class="content">
                     <h3>{{ item.product_name }}</h3>
@@ -58,22 +58,24 @@
                 </div>
             </div>
             {% endfor %}
-        {% endif %}           
-            
+            {% endif %}
+
 
             <div class="total">total : KSH. {{total_price}}/-</div>
             <form action="{{url_for('orders.create_order')}}" method="POST">
-              <input type="text" name="user_id" hidden > 
-                <input type="text" name="total_price" value="{{total_price}}" hidden >
-                <input type="submit" value="order now" class="btn"> 
-            </form >
-           <!-- <a href="" class="btn">checkout</a> -->
+                <input type="text" name="user_id" hidden>
+                <input type="text" name="total_price" value="{{total_price}}" hidden>
+                <input type="submit" value="order now" class="btn">
+            </form>
+            <!-- <a href="" class="btn">checkout</a> -->
         </div>
 
         <div class="login-form">
             <a href="{{ url_for('user.login') }}" class="btn">Sign In</a>
             <div class="profile-others">
-                <a href="#"><div class="fas fa-user"></div>My account</a>
+                <a href="#">
+                    <div class="fas fa-user"></div>My account
+                </a>
                 <a href="#">My orders</a>
                 <a href="#">saved items</a>
             </div>
@@ -85,8 +87,8 @@
     {% if msg %}
     {% for category, message in msg %}
     <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
-      <strong>{{ message }}</strong>
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <strong>{{ message }}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     {% endfor %}
     {% endif %}
@@ -98,7 +100,10 @@
     <section class="home" id="home">
         <div class="content">
             <h3>fresh <span>organic</span> products</h3>
-            <p>GreenMart provides consumers with healthier options while promoting environmental stewardship and supporting sustainable agricultural practices. By choosing GreenMart, you are not only making a positive impact on your health but also contributing to the well-being of the environment and future generations.</p>
+            <p>GreenMart provides consumers with healthier options while promoting environmental stewardship and
+                supporting sustainable agricultural practices. By choosing GreenMart, you are not only making a positive
+                impact on your health but also contributing to the well-being of the environment and future generations.
+            </p>
             <a href="{{ url_for('products.shop_products') }}" class="btn">shop now </a>
         </div>
     </section>
@@ -302,14 +307,15 @@
                 <a href="" class="links"><i class="fas fa-phone"></i> +123 5678904</a>
                 <a href="" class="links"><i class="fas fa-envelope"></i> support@greenmart.com</a>
                 <a href="" class="links"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya
-                00000</a>
-                
+                    00000</a>
+
             </div>
 
             <div class="box">
                 <h3>quick links</h3>
                 <a href="{{ url_for('index') }}" class="links"><i class="fas fa-arrow-right"></i> home</a>
-                <a href="{{ url_for('products.shop_products') }}" class="links"><i class="fas fa-arrow-right"></i> products</a>
+                <a href="{{ url_for('products.shop_products') }}" class="links"><i class="fas fa-arrow-right"></i>
+                    products</a>
                 <a href="{{ url_for('categories') }}" class="links"><i class="fas fa-arrow-right"></i> categories</a>
                 <a href="{{ url_for('blog') }}" class="links"><i class="fas fa-arrow-right"></i> Blogs</a>
             </div>
