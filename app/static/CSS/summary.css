@@ -1,0 +1,164 @@
+
+:root{
+    --orange: #ff7800;
+    --green: #198754;
+    --black: #130f40;
+    --smooth-green: #40aa54;
+    --light-green: #5ccf71;
+    --light-color: #666;
+    --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+    --border: .2rem solid rgba(0,0,0,.1);
+    --outline: .1rem solid rgba(0,0,0,.1);
+    --outline-hover: .2rem solid var(--orange);
+}
+.container {
+    max-width: 800px;
+    margin: 120px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    bottom: 10rem;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+p {
+    line-height: 1.6;
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 15px;
+        margin: 80px auto;
+    }
+
+    table, th, td {
+        padding: 8px;
+    }
+
+    .header {
+        padding: 1.5rem 5%;
+    }
+
+    .header .navbar a {
+        margin: 0 0.5rem;
+        font-size: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .container {
+        padding: 10px;
+        margin: 70px auto;
+    }
+
+    table, th, td {
+        padding: 6px;
+    }
+
+    h2 {
+        font-size: 2.3rem;
+    }
+
+    h3 {
+        font-size: 1.9rem;
+    }
+
+    p {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 8px;
+        margin: 60px auto;
+    }
+
+    table, th, td {
+        padding: 4px;
+    }
+
+    
+    h2 {
+        font-size: 2.1rem;
+    }
+
+    h3 {
+        font-size: 1.7rem;
+    }
+
+    p {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 5px;
+        margin: 50px auto;
+    }
+
+    table, th, td {
+        padding: 2px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    p {
+        font-size: 1.3rem;
+    }
+
+}
