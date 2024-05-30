@@ -109,8 +109,6 @@ def fetch_cart():
     return cart_items
 
 
-#
-
 def calculate_total_price():
     cart_items = fetch_cart()
     total_price = 0
@@ -119,30 +117,15 @@ def calculate_total_price():
     return total_price
 
 
-# @bp.route('/remove_from_cart/<int:product_id>')
-# def remove_from_cart(product_id):
-#     if 'cart' in session:
-#         #print(product_id)
-#         print(session['cart'])
-        
-#         if product_id in session['cart']:
-#             print(session['cart']['product_id'])
-#             print(product_id)
-#             del session['cart'][product_id]
-#         else:
-#             print('Product not in cart')
-#         return redirect(url_for('index'))
-#     else:
-#         print('Cart is empty')
-#         return redirect(url_for('index'))
-
-@bp.route('/remove_from_cart/<int:product_id>')
+@bp.route('/remove_from_cart/<int:product_id>', methods=['POST'])
 def remove_from_cart(product_id):
     if 'cart' in session:
-        if str(product_id) in session['cart']:
-            del session['cart'][str(product_id)]
-            return jsonify({'message': 'Item removed from cart successfully'}), 200
+        cart = session['cart']
+        if str(product_id) in cart:
+            del cart[str(product_id)]
+            session['cart'] = cart
+            return jsonify({'message': 'Item removed from cart successfully', 'success': True}), 200
         else:
-            return jsonify({'message': 'Item not found in cart'}), 404
+            return jsonify({'message': 'Item not found in cart', 'success': False}), 404
     else:
-        return jsonify({'message': 'Cart is empty'}), 404
+        return jsonify({'message': 'Cart is empty', 'success': False}), 404
