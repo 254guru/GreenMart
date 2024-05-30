@@ -6,7 +6,7 @@ from app.products import bp
 @bp.route('/shop')
 def shop_products():
     products = Product.query.all()
-    return render_template('shop.html', products=products)
+    return render_template('shop.html', products=products, current_user=None)
 
 
 @bp.route('/create_new', methods=['GET'])
