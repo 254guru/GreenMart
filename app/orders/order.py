@@ -8,7 +8,7 @@ from flask_login import login_required
 def create_order():
     if 'user_id' not in session:
         flash('Login to continue')
-        return redirect(url_for('user.login'))
+        return redirect(url_for('user_bp.login'))
 
     user_id =  session.get('user_id')
     total_price = request.form.get('total_price')
