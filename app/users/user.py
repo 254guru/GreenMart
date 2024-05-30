@@ -23,59 +23,60 @@ class LoginForm(FlaskForm):
 
 @bp.route('/signup', methods=['GET', 'POST'])
 def signup():
-    print('Signup route')
     form = SignupForm()
     if form.validate_on_submit():
-        print('Form is valid')
         username = form.username.data
         email = form.email.data
         password = form.password.data
 
-        # Check if the username or email is already registered
         existing_user = User.query.filter_by(email=email).first()
-        print('checking existing user')
         if existing_user:
-            flash('email already exists. Please choose a different email.', 'danger')
-            print('Username already exists. Please choose a different username.')
+            flash('Email already exists. Please choose a different email.', 'danger')
             return redirect(url_for('user.signup'))
 
-
-           # Hash the password before storing it in the database
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        print(hashed_password)
 
-        new_user = User(username=username, email=email, password=hashed_password)
+        # Check if the user is signing up as an admin
+        if form.is_admin.data:
+            role = 'admin'
+        else:
+            role = 'customer'
+
+        new_user = User(username=username, email=email, password=hashed_password, role=role)
         db.session.add(new_user)
         db.session.commit()
         flash('Account created successfully! You can now log in.', 'success')
-        print('Account created successfully! You can now log in.')
         return redirect(url_for('user.login'))
     else:
-        print(form.errors)  # Print form errors if validation fails
-    return render_template('login.html', form=form)
+        print(form.errors)
+    return render_template('signup.html', form=form)
 
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        email= form.email.data
+        email = form.email.data
         password = form.password.data
 
         user = User.query.filter_by(email=email).first()
         if user:
-
             valid_password = bcrypt.check_password_hash(user.password, password)
             if valid_password:
-            
-
-        #if user and valid_password ==True:
-                session['user_id'] = user.id  # Store user ID in session
+                session['user_id'] = user.id
                 flash('Logged in successfully!', 'success')
-                return redirect(url_for('index'))
+                if user.role == 'admin':
+                    return redirect(url_for('admin.dashboard'))
+                else:
+                    return redirect(url_for('index'))
             else:
                 flash('Invalid email or password. Please try again.', 'danger')
         else:
             flash('Invalid email or password. Please try again.', 'danger')
     return render_template('login.html', form=form)
-  
+
+@bp.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('index'))
