@@ -86,6 +86,7 @@ def add_to_cart():
    # view_cart = fetch_cart()
     
     #  'cart': {'11': {'quantity': 1}, '12': {'quantity': 1}, '13': {'quantity': 1}, '16': {'quantity': 1}, '18': {'quantity': 1}}}>
+    flash('Item successfully added to cart', 'success')
     return redirect(url_for('products.shop_products'))
 
 def fetch_cart():
