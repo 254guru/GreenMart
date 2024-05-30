@@ -66,19 +66,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to remove item from cart via AJAX
     function removeFromCart(productId) {
-        fetch("{{ url_for('orders.remove_from_cart', product_id='') }}" + productId, {
+        fetch(`/orders/remove_from_cart/${productId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        }).then(response => response.json()).then(data => {
+            // Display return message in message area
+            document.getElementById('message-area').innerHTML = data.message;
+            // Remove the item from the DOM if it was successfully removed from the cart
+            if (data.success) {
+                document.querySelector(`a[data-product-id="${productId}"]`).closest('.box').remove();
+                // Optionally, update the total price displayed
+                updateTotalPrice();
+            }
+        }).catch(error => {
+            console.error('Error removing item from cart:', error);
+        });
+    }
+
+    // Function to update the total price displayed in the shopping cart
+    function updateTotalPrice() {
+        fetch('/calculate_total_price', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-        }).then(response => {
-            if (response.ok) {
-                location.reload(); // Refresh the page after successful removal
-            } else {
-                console.error('Error removing item from cart:', response.statusText);
-            }
+        }).then(response => response.json()).then(data => {
+            document.querySelector('.total').textContent = `total : KSH. ${data.total_price}/-`;
         }).catch(error => {
-            console.error('Error removing item from cart:', error);
+            console.error('Error updating total price:', error);
         });
     }
 });
