@@ -35,10 +35,13 @@ admin.add_view(ModelView(Category, db.session))
 from app.products import bp as products_bp
 from app.users import bp as user_bp
 from app.orders import bp as order_bp
+from app.context_processors import inject_cart
     
 app.register_blueprint(products_bp, url_prefix='/products')
 app.register_blueprint(user_bp, url_prefix='/users', name='user_bp')
 app.register_blueprint(order_bp, url_prefix='/orders')
+app.context_processor(inject_cart)
+
     
 
 from app import route
