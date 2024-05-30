@@ -83,16 +83,3 @@ carousel.addEventListener("scroll", infiniteScroll);
 wrapper.addEventListener("mouseenter", () => clearTimeout(timeoutId));
 wrapper.addEventListener("mouseleave", autoPlay);
 
-// flash message
-document.addEventListener('DOMContentLoaded', (event) => {
-    setTimeout(() => {
-        const flashes = document.querySelectorAll('.flash');
-        flashes.forEach(flash => {
-            flash.style.transition = 'opacity 0.5s';
-            flash.style.opacity = '0';
-            setTimeout(() => {
-                flash.remove();
-            }, 1000);
-        });
-    }, 5000);
-});

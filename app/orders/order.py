@@ -86,7 +86,7 @@ def add_to_cart():
    # view_cart = fetch_cart()
     
     #  'cart': {'11': {'quantity': 1}, '12': {'quantity': 1}, '13': {'quantity': 1}, '16': {'quantity': 1}, '18': {'quantity': 1}}}>
-    flash('Item successfully added to cart', 'success')
+    
     return redirect(url_for('products.shop_products'))
 
 def fetch_cart():
@@ -119,22 +119,30 @@ def calculate_total_price():
     return total_price
 
 
+# @bp.route('/remove_from_cart/<int:product_id>')
+# def remove_from_cart(product_id):
+#     if 'cart' in session:
+#         #print(product_id)
+#         print(session['cart'])
+        
+#         if product_id in session['cart']:
+#             print(session['cart']['product_id'])
+#             print(product_id)
+#             del session['cart'][product_id]
+#         else:
+#             print('Product not in cart')
+#         return redirect(url_for('index'))
+#     else:
+#         print('Cart is empty')
+#         return redirect(url_for('index'))
+
 @bp.route('/remove_from_cart/<int:product_id>')
 def remove_from_cart(product_id):
     if 'cart' in session:
-        #print(product_id)
-        print(session['cart'])
-        
-        if product_id in session['cart']:
-            print(session['cart']['product_id'])
-            print(product_id)
-            del session['cart'][product_id]
+        if str(product_id) in session['cart']:
+            del session['cart'][str(product_id)]
+            return jsonify({'message': 'Item removed from cart successfully'}), 200
         else:
-            print('Product not in cart')
-        return redirect(url_for('index'))
+            return jsonify({'message': 'Item not found in cart'}), 404
     else:
-        print('Cart is empty')
-        return redirect(url_for('index'))
-
-
-
+        return jsonify({'message': 'Cart is empty'}), 404
