@@ -5,6 +5,8 @@
   max-width: 1840px;
   width: 100%;
   position: relative;
+  padding-top: 15rem;
+  padding-bottom: 10rem;
 }
 .wrapper i {
   top: 50%;

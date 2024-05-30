@@ -13,6 +13,76 @@
 </head>
 
 <body>
+      <!-- header start -->
+      <header class="header">
+        <a href="{{ url_for('index') }}" class="logo">GreenMart</a>
+        <nav class="navbar">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('products.shop_products') }}">Products</a>
+            <a href="{{ url_for('categories') }}">Categories</a>
+            <a href="{{ url_for('blog') }}">Blogs</a>
+        </nav>
+
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <div class="fas fa-user" id="login-btn"></div>
+            <!-- {{session['user_id']}} -->
+        </div>
+
+        <form action="" class="search-form">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+            {% if cart_items %}
+            {% for item in cart_items %}
+            <div class="box">
+
+                <a href="{{url_for('orders.remove_from_cart', product_id=item.product_id)}}"><i class="fas fa-trash"></i></a>
+                <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{item.product_name}}">
+                <div class="content">
+                    <h3>{{ item.product_name }}</h3>
+                    <span class="price">KSH {{ item.price }}</span>
+                    <span class="quantity">qty: {{ item.quantity }}</span>
+
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}           
+            
+
+            <div class="total">total : KSH. {{total_price}}/-</div>
+            <form action="{{url_for('orders.create_order')}}" method="POST">
+              <input type="text" name="user_id" hidden > 
+                <input type="text" name="total_price" value="{{total_price}}" hidden >
+                <input type="submit" value="order now" class="btn"> 
+            </form >
+           <!-- <a href="" class="btn">checkout</a> -->
+        </div>
+
+        <div class="login-form">
+            <a href="{{ url_for('user.login') }}" class="btn">Sign In</a>
+            <div class="profile-others">
+                <a href="#"><div class="fas fa-user"></div>My account</a>
+                <a href="#">My orders</a>
+                <a href="#">saved items</a>
+            </div>
+        </div>
+    </header>
+    <!-- header end -->
+    {% with msg = get_flashed_messages(with_categories=True) %}
+    {% if msg %}
+    {% for category, message in msg %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      <strong>{{ message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 
   <section class="slider">
     <div class="wrapper">
@@ -59,14 +129,6 @@
     </div>
   </section>
   <!-- product section end -->
-
-  <!-- Navigation Side Panel -->
-  <nav class="side-panel">
-    <a href="{{ url_for('index') }}">Home</a>
-    <a href="{{ url_for('categories') }}">Categories</a>
-    <a href="{{ url_for('blog') }}">Blogs</a>
-  </nav>
-
 
   <script src="{{ url_for('static', filename='js/shop.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
