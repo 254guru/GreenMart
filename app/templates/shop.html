@@ -37,32 +37,27 @@
       </form>
 
       <div class="shopping-cart">
-          <div id="message-area"></div>
-          {% if cart_items %}
-          {% for item in cart_items %}
-          <div class="box">
-
-              <a href="#" class="remove-item" data-product-id="{{ item.product_id }}"><i class="fas fa-trash"></i></a>
-              <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{item.product_name}}">
-              <div class="content">
-                  <h3>{{ item.product_name }}</h3>
-                  <span class="price">KSH {{ item.price }}</span>
-                  <span class="quantity">qty: {{ item.quantity }}</span>
-
-              </div>
-          </div>
-          {% endfor %}
-          {% endif %}
-
-
-          <div class="total">total : KSH. {{total_price}}/-</div>
-          <form action="{{url_for('orders.create_order')}}" method="POST">
-              <input type="text" name="user_id" hidden>
-              <input type="text" name="total_price" value="{{total_price}}" hidden>
-              <input type="submit" value="order now" class="btn">
-          </form>
-          <!-- <a href="" class="btn">checkout</a> -->
-      </div>
+        <div id="message-area"></div>
+        {% if cart_items %}
+        {% for item in cart_items %}
+        <div class="box">
+            <a href="#" class="remove-item" data-product-id="{{ item.product_id }}"><i class="fas fa-trash"></i></a>
+            <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.product_name }}">
+            <div class="content">
+                <h3>{{ item.product_name }}</h3>
+                <span class="price">KSH {{ item.price }}</span>
+                <span class="quantity">qty: {{ item.quantity }}</span>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="total">total : KSH. {{ total_price }}/-</div>
+        <form action="{{ url_for('orders.create_order') }}" method="POST">
+            <input type="text" name="user_id" hidden>
+            <input type="text" name="total_price" value="{{ total_price }}" hidden>
+            <input type="submit" value="order now" class="btn">
+        </form>
+    </div>
 
       <div class="login-form">
           <a href="{{ url_for('user_bp.login') }}" class="btn">Sign In</a>

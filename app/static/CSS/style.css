@@ -324,7 +324,7 @@ a{
 .category-heading,
 .product-heading{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -336,18 +336,12 @@ a{
     letter-spacing: 0.5px;
 }
 
-.category-heading span{
-    color: #a7a7a7;
-    font-weight: 400;
-    letter-spacing: 1px;
-}
-
 .category .category-container{
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 40px;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .category .category-container .category-box{
@@ -392,7 +386,7 @@ a{
 
 .features .features-heading{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
