@@ -22,12 +22,13 @@
 
     <!-- header start -->
     <header class="header">
-        <a href="{{ url_for('index') }}" class="logo">GreenMart</a>
+        <a href="{{ url_for('main.index') }}" class="logo">GreenMart</a>
         <nav class="navbar">
-            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('main.index') }}">Home</a>
             <a href="{{ url_for('products.shop_products') }}">Products</a>
-            <a href="{{ url_for('categories') }}">Categories</a>
-            <a href="{{ url_for('blog') }}">Blogs</a>
+            <a href="{{ url_for('main.categories') }}">Categories</a>
+            <a href="{{ url_for('main.blog') }}">Blogs</a>
+            <a href="{{ url_for('admin_custom.index') }}">admin panel</a>
         </nav>
 
         <div class="icons">
@@ -308,11 +309,11 @@
 
             <div class="box">
                 <h3>quick links</h3>
-                <a href="{{ url_for('index') }}" class="links"><i class="fas fa-arrow-right"></i> home</a>
+                <a href="{{ url_for('main.index') }}" class="links"><i class="fas fa-arrow-right"></i> home</a>
                 <a href="{{ url_for('products.shop_products') }}" class="links"><i class="fas fa-arrow-right"></i>
                     products</a>
-                <a href="{{ url_for('categories') }}" class="links"><i class="fas fa-arrow-right"></i> categories</a>
-                <a href="{{ url_for('blog') }}" class="links"><i class="fas fa-arrow-right"></i> Blogs</a>
+                <a href="{{ url_for('main.categories') }}" class="links"><i class="fas fa-arrow-right"></i> categories</a>
+                <a href="{{ url_for('main.blog') }}" class="links"><i class="fas fa-arrow-right"></i> Blogs</a>
             </div>
 
             <div class="box">

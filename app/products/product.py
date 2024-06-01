@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from app.models import Product
-from app import app, db
+from app import create_app
 from app.products import bp
 
 @bp.route('/shop')
@@ -72,7 +72,3 @@ def update_product():
 
 
 
-@app.route('/category/<int:category_id>')
-def category_detail(category_id):
-    category = Category.query.get_or_404(category_id)
-    return render_template('categories.html', category=category)

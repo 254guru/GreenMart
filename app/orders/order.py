@@ -48,7 +48,7 @@ def order_summary(order_id):
     order = Order.query.get_or_404(order_id)
     order_items = OrderItem.query.filter_by(order_id=order_id).all()
     return render_template('summary.html', order=order, order_items=order_items)
-    return redirect(url_for('index'))
+    return redirect(url_for('main.index'))
     
 
 

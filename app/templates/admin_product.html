@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+<h1>products</h1>
+<!-- Add unique identifier -->
+<p>Custom Admin prouct Page</p>
+
+<div>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+ add new product
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">add new product</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form action="{{url_for('admin_custom.add_product')}}" method="post">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">product</label>
+                <input type="text" class="form-control" id="exampleInput" name="name" aria-describedby="emailHelp">
+                
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">description</label>
+                <input type="text" class="form-control" name="description" id="description">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">price</label>
+                <input type="text" class="form-control" name="price" id="description">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">image_url</label>
+                <input type="text" class="form-control" name="image_url" id="description">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">category</label>
+               <select name="category_id" id="" >
+                     <option value="1"> fruit</option>
+                        <option value="2"> vegetable</option>
+                
+                     
+               </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>name</th>
+            <th>description</th>
+            <th>price</th>
+            <th>category</th>
+
+            
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description | truncate(15)}}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.category_id}}</td>
+            
+            <td>
+                <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
