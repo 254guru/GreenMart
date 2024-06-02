@@ -4,46 +4,50 @@ from app import db
 from app.models import User, Product, Category, Order, OrderItem
 from app.admin import admin_custom_bp
 
+
 @admin_custom_bp.route('/')
-#@login_required()
-
 def index():
-    if 'user_id' not in session:
-        flash('Please login to access the admin dashboard')
+    if 'user_id' not in session or session.get('role') != 'admin':
+        flash('You do not have permission to access the admin dashboard.', 'danger')
         return redirect(url_for('user_bp.login'))
-
-
     return render_template('admin_dashboard.html')
 
+
 @admin_custom_bp.route('/users')
-#@login_required
 def users():
     if 'user_id' not in session:
         flash('Please login to access users page')
         return redirect(url_for('user_bp.login'))
-
     users = User.query.all()
     return render_template('admin_users.html', users=users)
 
+
 @admin_custom_bp.route('/products')
-#@login_required
 def products():
     products = Product.query.all()
     categories = Category.query.all()
-
     return render_template('admin_product.html', products=products)
 
+
 @admin_custom_bp.route('/orders')
-#@login_required
 def orders():
     orders = Order.query.all()
     return render_template('admin_orders.html', orders=orders)
+
+
+@admin_custom_bp.route('/item')
+def order_items():
+    items = OrderItem.query.all()
+    return render_template('order_item.html', order_items=items)
+
 
 @admin_custom_bp.route('/categories')
 @login_required
 def categories():
     categories = Category.query.all()
     return render_template('admin_categories.html', categories=categories)
+
+
 
 # Add, edit, delete routes for users, products, orders, categories
 # Example for adding a product
@@ -80,6 +84,7 @@ def edit_product(product_id):
     categories = Category.query.all()
     return render_template('admin_product.html', product=product, categories=categories)
 
+
 @admin_custom_bp.route('/products/delete/<int:product_id>', methods=['DELETE'])
 def delete_product(product_id):
     product = Product.query.get_or_404(product_id)
@@ -88,8 +93,3 @@ def delete_product(product_id):
     flash('Product deleted successfully!', 'success')
     return redirect(url_for('admin_custom.products'))
 
-@admin_custom_bp.route('/item')
-#@login_required
-def order_items():
-    item = OrderItem.query.all()
-    return render_template('order_item.html', item=item)
