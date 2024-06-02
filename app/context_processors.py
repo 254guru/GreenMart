@@ -5,6 +5,9 @@ from app.models import Product
 
 @app.context_processor
 def inject_cart():
+    """
+    Injects the cart items and total price into the context for all templates.
+    """
     cart = session.get('cart', {})
     cart_items = []
     total_price = 0

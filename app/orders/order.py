@@ -6,6 +6,11 @@ from flask_login import login_required
 
 @bp.route('/checkout', methods=['POST'])
 def create_order():
+    """
+    this route handles the creation of an order. It processes a POST request
+    to create a new order for the logged-in user. If the user is not logged in,
+    they are redirected to the login page.
+    """
     if 'user_id' not in session:
         flash('Login to continue')
         return redirect(url_for('user_bp.login'))
@@ -42,31 +47,42 @@ def create_order():
     else:
         return jsonify({'message': 'login first!'}), 400
 
+
 @bp.route('/order_summary/<int:order_id>')
-#@login_required
 def order_summary(order_id):
+    """
+     This route handles the display of an order summary. It processes a GET request
+    to fetch the order details and associated order items for the specified order ID.
+    """
     order = Order.query.get_or_404(order_id)
     order_items = OrderItem.query.filter_by(order_id=order_id).all()
     return render_template('summary.html', order=order, order_items=order_items)
     return redirect(url_for('main.index'))
     
 
-
 def merge(dict1, dict2):
+    """
+    Merge two lists or dictionaries.
+    """
     if isinstance(dict1, list) and isinstance(dict2, list):
         return dict1 + dict2
     elif isinstance(dict1, dict) and isinstance(dict2, dict):
         return dict(list(dict1.items()) + list(dict2.items()))
 
+
 @bp.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
+    """
+    This route handles the addition of a product to the cart. It processes a POST request
+    to add a product to the cart. The product ID and quantity are retrieved from the request
+    and added to the session cart.
+    """
     if request.method == 'POST':
         product_id = request.form.get('product_id')
         #print(product_id)
-    
-        
+            
     #print(session)
-    quantity = 1 #request.args.get('quantity', default=1)
+    quantity = 1 
     dict_items = {product_id: {'quantity': quantity}}
     if 'cart' in session:
         if product_id in session['cart']:
@@ -81,15 +97,13 @@ def add_to_cart():
            
     else:
        session['cart'] = dict_items
-    #print(session['cart'])
-    #flash('Product added to cart')
-   # view_cart = fetch_cart()
-    
-    #  'cart': {'11': {'quantity': 1}, '12': {'quantity': 1}, '13': {'quantity': 1}, '16': {'quantity': 1}, '18': {'quantity': 1}}}>
-    
+   
     return redirect(url_for('products.shop_products'))
 
 def fetch_cart():
+    """
+    Fetch the cart items from the session.
+    """
     cart = session.get('cart', {})
     cart_items = []
     for product_id, value in cart.items():
@@ -110,6 +124,9 @@ def fetch_cart():
 
 
 def calculate_total_price():
+    """
+    Calculate the total price of all items in the cart.
+    """
     cart_items = fetch_cart()
     total_price = 0
     for item in cart_items:
@@ -119,6 +136,11 @@ def calculate_total_price():
 
 @bp.route('/remove_from_cart/<int:product_id>', methods=['POST'])
 def remove_from_cart(product_id):
+    """
+    This route handles the removal of a product from the cart. It processes a POST request
+    to remove a product from the cart. The product ID is retrieved from the request and
+    removed from the session cart.
+    """
     if 'cart' in session:
         cart = session['cart']
         if str(product_id) in cart:
