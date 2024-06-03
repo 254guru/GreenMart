@@ -6,6 +6,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
 import datetime
 
+
 # Initialize Flask extensions
 db = SQLAlchemy()
 migrate = Migrate()
@@ -20,8 +21,13 @@ app.config['SECRET_KEY'] = 'c328ef68141cff6e6166915d3cefe'
 # Initialize Flask extensions with the app
 db.init_app(app)
 migrate.init_app(app, db)
-#login_manager = LoginManager(app)
+login_manager = LoginManager(app)
 
+
+from app.models import User  # Import the User model
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 # Register blueprints
@@ -49,6 +55,12 @@ admin.add_view(ModelView(Product, db.session))
 admin.add_view(ModelView(Order, db.session))
 admin.add_view(ModelView(OrderItem, db.session))
 admin.add_view(ModelView(Category, db.session))
+
+
+from app.context_processors import inject_cart
+@app.context_processor
+def context_processor():
+    return inject_cart()
 
 # Import routes
 from app import route
