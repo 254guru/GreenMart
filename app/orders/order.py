@@ -10,6 +10,10 @@ def create_order():
     this route handles the creation of an order. It processes a POST request
     to create a new order for the logged-in user. If the user is not logged in,
     they are redirected to the login page.
+    it retrieves the user_id from the session and the total_price from the form data.
+    Creates a new order with the user_id and total_price
+    then retrieves the product_id and quantity from the session cart
+    Creates a new order item with the order_id, product_id, and quantity
     """
     if 'user_id' not in session:
         flash('Login to continue')

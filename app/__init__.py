@@ -16,7 +16,7 @@ def create_app():
     app = Flask(__name__)
 
     # Configure app settings
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL') 
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://app_fqsv_user:hneVmfUWdUFCiWK586NzKD4JJX0YwhT8@dpg-cpaadjv109ks73al8cag-a.oregon-postgres.render.com/app_fqsv' 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = 'c328ef68141cff6e6166915d3cefe'
     
