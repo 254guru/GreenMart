@@ -14,7 +14,7 @@ def shop_products():
         str: The rendered HTML template for the shop page with the list of products.
     """
     products = Product.query.all()
-    return render_template('shop.html', products=products, current_user=None)
+    return render_template('shop.html', products=products)
 
     
 
