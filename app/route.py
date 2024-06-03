@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, send_from_directory, session
-from app import create_app
+from app import app
 from app.orders import order
 from flask import Blueprint
 

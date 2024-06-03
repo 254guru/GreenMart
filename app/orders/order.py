@@ -28,7 +28,6 @@ def create_order():
         new_order = Order(
             user_id=user_id,
             total_price=total_price,
-            #status=status,
             payment_status=payment_status
 
         )
@@ -77,9 +76,10 @@ def merge(dict1, dict2):
 @bp.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     """
-    This route handles the addition of a product to the cart. It processes a POST request
-    to add a product to the cart. The product ID and quantity are retrieved from the request
-    and added to the session cart.
+    This endpoint handles the addition of a product to the cart. It processes a POST request
+    to add a product to the cart. The product ID is retrieved from the request and added to
+    the session cart with a default quantity of 1. If the product is already in the cart,
+    its quantity is incremented.
     """
     if request.method == 'POST':
         product_id = request.form.get('product_id')
