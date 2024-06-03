@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from app.models import Product
-from app import create_app
+from app import app
 from app.products import bp
 
 @bp.route('/shop')
