@@ -18,6 +18,10 @@ def categories():
 def blog():
     return render_template('blog.html')
 
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
 @app.route('/static/CSS/style.css')
 def serve_css():
     return send_from_directory('static', 'CSS/style.css')
@@ -29,6 +33,10 @@ def serve_responsive_css():
 @app.route('/static/CSS/login_form.css')
 def serve_form_css():
     return send_from_directory('static', 'CSS/login_form.css')
+
+@app.route('/static/CSS/profile.css')
+def serve_profile_css():
+    return send_from_directory('static', 'CSS/profile.css')
 
 @app.route('/static/js/script.js')
 def serve_js():

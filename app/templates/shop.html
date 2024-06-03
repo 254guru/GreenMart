@@ -62,7 +62,7 @@
       <div class="login-form">
           <a href="{{ url_for('user_bp.login') }}" class="btn">Sign In</a>
           <div class="profile-others">
-              <a href="#">
+              <a href="{{ url_for('profile') }}">
                   <div class="fas fa-user"></div>My account
               </a>
               <a href="#">My orders</a>
@@ -91,17 +91,7 @@
       <i id="right" class="fa-solid fa-angle-right"></i>
     </div>
   </section>
-  {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="flash-container">
-                    <div class="flashes">
-                        {% for category, message in messages %}
-                            <div class="flash flash-{{ category }}">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
-        {% endwith %}
+  
   <!-- products section start -->
   <section class="products" id="products">
     <div class="product-heading">
