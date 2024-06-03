@@ -1,8 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
 from app import db
 import datetime
+from sqlalchemy import func
 
 
+# Define the User model
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
@@ -13,7 +15,7 @@ class User(db.Model):
    # is_admin = db.Column(db.Boolean, default=False)
 
 
-
+# Define the Product model
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -24,8 +26,7 @@ class Product(db.Model):
     category = db.relationship('Category', backref=db.backref('products', lazy=True))
 
 
-
-
+# Define the Order model
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -35,7 +36,7 @@ class Order(db.Model):
     order_items = db.relationship('OrderItem', backref='order', lazy=True)
 
 
-
+# Define the OrderItem model
 class OrderItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_id = db.Column(db.Integer, db.ForeignKey('order.id'), nullable=False)
@@ -44,6 +45,7 @@ class OrderItem(db.Model):
     product = db.relationship('Product', backref='order_items', lazy=True)
 
 
+# Define the Category model
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
