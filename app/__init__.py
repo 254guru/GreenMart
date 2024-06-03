@@ -33,7 +33,7 @@ from app.route import bp as main_bp
 
 app.register_blueprint(products_bp, url_prefix='/products')
 app.register_blueprint(user_bp, url_prefix='/users', name='user_bp')
-app.register_blueprint(orders_bp, url_prefix='/orders')
+app.register_blueprint(order_bp, url_prefix='/orders')
 app.register_blueprint(admin_custom_bp, url_prefix='/admin_custom')
 app.register_blueprint(main_bp)
 
