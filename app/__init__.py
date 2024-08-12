@@ -13,10 +13,16 @@ migrate = Migrate()
 
 app = Flask(__name__)
 
-# Configure app settings
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://app_fqsv_user:hneVmfUWdUFCiWK586NzKD4JJX0YwhT8@dpg-cpaadjv109ks73al8cag-a.oregon-postgres.render.com/app_fqsv'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'  # Use SQLite for simplicity
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://@localhost/baby_growth'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'c328ef68141cff6e6166915d3cefe'
+app.config['SECRET_KEY'] = 'your_secret_key'
+
+
+# # Configure app settings
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://app_fqsv_user:hneVmfUWdUFCiWK586NzKD4JJX0YwhT8@dpg-cpaadjv109ks73al8cag-a.oregon-postgres.render.com/app_fqsv'
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# app.config['SECRET_KEY'] = 'c328ef68141cff6e6166915d3cefe'
 
 # Initialize Flask extensions with the app
 db.init_app(app)
